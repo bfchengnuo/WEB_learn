@@ -1,0 +1,35 @@
+函数调用
+函数定义好后，是不能自动执行的，需要调用它,直接在需要的位置写函数名。
+
+第一种情况:在<script>标签内调用。
+
+  <script type="text/javascript">
+    function add2()
+    {
+         sum = 1 + 1;
+         alert(sum);
+    }
+  add2();//调用函数，直接写函数名。
+</SCRIPT>
+第二种情况:在HTML文件中调用，如通过点击按钮后调用定义好的函数。
+
+<html>
+<head>
+<script type="text/javascript">
+   function add2()
+   {
+         sum = 5 + 6;
+         alert(sum);
+   }
+</script>
+</head>
+<body>
+    // 这是在body里面的调用
+    <button onclick="">提示文字</button>
+<form>
+    // 这是在form里面的调用  form是表单
+    <input type="button" value="click it" onclick="add2()">  //按钮,onclick点击事件，直接写函数名
+</form>
+</body>
+</html>
+
