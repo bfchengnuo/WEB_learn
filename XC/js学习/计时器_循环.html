@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>计时器</title>
+</head>
+<script type="text/javascript">
+  var num=0;
+  // 设置全局 否则无法访问到
+  var i;
+  function startCount() {
+    document.getElementById('count').value=num;
+    num=num+1;
+    // 反复调用实现计数
+    i =  setTimeout("startCount()",1000);
+  }
+  // 要创建一个运行于无穷循环中的计数器，我们需要编写一个函数来调用其自身。
+  // 
+  // 设置停止计时器的方法
+  	function stopCount(){
+  		clearTimeout(i);
+  	}
+</script>
+</head>
+<body>
+<form>
+<!-- 点击输入框时被触发 -->
+	<input type="text" id="count" onclick="startCount()" />
+
+	<input type="button" value="Start" onclick="startCount()" />
+    <input type="button" value="Stop" onclick="stopCount()"  />
+</form>
+</body>
+</html>
