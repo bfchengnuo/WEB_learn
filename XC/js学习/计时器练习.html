@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>浏览器对象</title>  
+  <meta http-equiv="Content-Type" content="text/html; charset=gkb"/>   
+ </head>
+ <body>
+  <!--先编写好网页布局-->
+  <h1>操作成功！</h1>
+  <span id="time">5</span>
+  <span>秒后返回主页</span>
+  <!-- 引用js代码中的方法/函数 -->
+  <a href="javascript:back()">返回</a>
+  
+ 
+  <script type="text/javascript">  
+ 
+   //获取显示秒数的元素，通过定时器来更改秒数。
+   var num = document.getElementById("time").innerHTML;
+   function jishi() {
+   	document.getElementById("time").innerHTML = --num;
+   	if (num == 0) {
+   		// assign是加载新的文档
+   		location.assign("http://www.imooc.com");
+   	}
+   }
+
+   // 每隔1000毫秒执行jishi()
+   setInterval("jishi()",1000);
+   //通过window的location和history对象来控制网页的跳转。
+   //location用于获取或设置窗体的URL，并且可以用于解析URL。
+   //history对象记录了用户曾经浏览过的页面(URL)
+   function back(){
+   	window.history.back();
+   }
+ </script> 
+</body>
+</html>
