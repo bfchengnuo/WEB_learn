@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+        <title>无标题文档</title>
+    </head>
+    
+    <body>
+        <form>
+          请选择你爱好:<br>
+          <input type="checkbox" name="hobby" id="hobby1">  音乐
+          <input type="checkbox" name="hobby" id="hobby2">  登山
+          <input type="checkbox" name="hobby" id="hobby3">  游泳
+          <input type="checkbox" name="hobby" id="hobby4">  阅读
+          <input type="checkbox" name="hobby" id="hobby5">  打球
+          <input type="checkbox" name="hobby" id="hobby6">  跑步 <br>
+          <input type="button" value = "全选" onclick = "checkall();">
+          <input type="button" value = "全不选" onclick = "clearall();">
+          <p>请输入您要选择爱好的序号，序号为1-6:</p>
+          <input id="wb" name="wb" type="text" >
+          <input name="ok" type="button" value="确定" onclick = "checkone();">
+        </form>
+        <script type="text/javascript">
+        function checkall(){
+        	// document.getElementsByTagName("input")获取的是所有input标签，包括复选项和按钮，所以要判断是否是复选项，如是选中。
+            var hobby = document.getElementsByTagName("input");
+            // 返回一个数组
+            for(var i=0;i<hobby.length;i++){
+                hobby[i].checked=true;
+                
+            }
+           
+        }
+        function clearall(){
+            var hobby = document.getElementsByName("hobby");
+            //alert(hobby.length);
+            for(var i=0;i<hobby.length;i++){
+                hobby[i].checked=false;
+            }
+            
+        }
+        
+        function checkone(){
+            clearall();
+            // 获取所有标签
+            var hobby = document.getElementsByName("hobby");
+            // 获取输入的数字，是一个字符串
+            var j=document.getElementById("wb").value;
+
+            for(var i=0;i<j.length;i++){
+            	// 判断越界
+                if(j.charAt(i)>6 || j.charAt(i)<1){
+                    alert("越界,请重新输入！");
+                    // 重置输入框里的值
+                    document.getElementById("wb").value="";
+                }
+            }
+                for(var n=0;n<j.length;n++){
+                   // 设置选中
+                        hobby[(j.charAt(n))-1].checked=true; 
+                }
+
+            
+            
+        }
+        
+        </script>
+    </body>
+</html>
