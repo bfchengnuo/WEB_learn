@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+</head>
+<body>
+<!--调整前-->
+<!--
+<div id="con">
+  <p>javascript</p>
+  <div>jQuery</div>
+  <h5>PHP</h5>
+  </div>
+-->
+<!--调整后，IE这种浏览器不识别空白节点-->
+<div id="con"><p>javascript</p>
+  <div>jQuery</div>
+  <h5>PHP</h5></div> 
+<script type="text/javascript">
+  var x=document.getElementById("con");
+  
+ document.write(x.firstChild.nodeName+" "+x.firstChild.nodeValue+" "+x.firstChild.nodeType+"<br/>");
+ document.write(x.lastChild.nodeName+" "+x.firstChild.nodeValue+" "+x.firstChild.nodeType);
+</script>
+</body>
+</html>
