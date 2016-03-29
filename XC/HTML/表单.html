@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>测试</title>
+	</head>
+	<body>
+		<!-- 表单标签 form -->
+		<form>
+			输入名称：<input type="text" name="user" value=""></input> <br />
+			输入密码：<input type="password" name="password" value=""></input><br>
+			<!-- 单选框 -->
+			选择性别：	<input type="Radio" name="sex" value="nan">男</input>
+						<input type="Radio" name="sex" value="nv">女</input>
+			<br>
+			<!-- 复选框 -->
+			选择技术：	<input type="checkbox" name="jishu" value="java">java</input>
+						<input type="checkbox" name="jishu" value="css">css</input>
+						<input type="checkbox" name="jishu" value="html">html</input>
+						<input type="checkbox" name="jishu" value="div">div</input>
+			<br>
+			选择文件：<input type="file" name="file" ></input>
+			<br>
+			一个图片：<input type="image" src="1.jpg"></input>
+			<br>
+			隐藏组件：<input type="hidden" name="myke" value="mavalue"></input>
+			<br>
+			一个按钮：<input type="button" value="这是按钮" onclick="alert('你点击了一个按钮')"></input>
+			<br>
+			<!-- 下拉菜单 -->
+			<select name="country">
+				<option value="name" selected="sele">选择国家</option>
+				<option value="usa">美国</option>
+				<option value="jp">日本</option>
+				<option value="zn">中国</option>
+			</select>
+			<!-- 文本输入框 -->
+			<textarea name="text"></textarea>
+			<br>
+
+			<input type="reset" value="清除数据"></input>
+			<input type="submit" value="提交数据"></input>
+		</form>
+		
+	</body>
+</html>
