@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>替换元素节点</title>
+</head>
+<body>
+
+
+  <div><b id="oldnode">JavaScript</b>是一个很常用的技术，为网页添加动态效果。</div>
+  <a href="javascript:replaceMessage()"> 将加粗改为斜体</a>
+  
+    <script type="text/javascript">
+      function replaceMessage(){
+        var old = document.getElementById("oldnode");
+        // 创建一个i标签，i就是倾斜，b为粗体
+        var newnode = document.createElement("i");
+        // 将内容复制
+        newnode.innerHTML = old.innerHTML;
+        // 替换操作，替换的是元素对象并非是用i标签替换id
+        // replaceChild 实现子节点(对象)的替换。  所以要找到父节点
+        old.parentNode.replaceChild(newnode,old);
+		   
+       }    
+  </script>
+  
+ </body>
+</html>

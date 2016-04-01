@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>插入节点</title>
+</head>
+<body>
+
+<ul id="test"><li>JavaScript</li><li id = "deo">HTML</li></ul> 
+ 
+<script type="text/javascript">
+
+// 获取父节点
+  var otest = document.getElementById("test");  
+  // 获取要插入的对象的ID
+  var cs = document.getElementById("deo");  
+  // 创建一个新的标签
+  var newnode = document.createElement("li");
+  // 赋值给具体的数值
+  newnode.innerHTML = "PHP";
+  // 插入到ID为cs标签的前面
+  otest.insertBefore(newnode,cs);
+  
+  
+  
+</script> 
+
+</body>
+</html>

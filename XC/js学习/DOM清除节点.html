@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>清除节点</title>
+</head>
+
+<body>
+<div id="content">
+  <h1>html</h1>
+  <h1>php</h1>
+  <h1>javascript</h1>
+  <h1>jquery</h1>
+  <h1>java</h1>
+</div>
+
+<script type="text/javascript">
+function clearText() {
+  var content=document.getElementById("content");
+  // 在此完成该函数
+  // childNodes 访问选定元素节点下的所有子节点的列表，返回一个数组
+  for(var i = 0;i<content.childNodes.length;i++){
+	  // nodeType 返回节点类型
+	  // 元素类型    节点类型
+	  // 元素          1
+	  // 属性          2
+	  // 文本          3
+	  // 注释          8
+	  // 文档          9	
+  	if(content.childNodes[i].nodeType != 1){
+  		continue;
+  	}else{
+  		// 清除节点
+  		content.removeChild(content.childNodes[i]);
+  	}
+  }
+  
+}
+</script>
+
+<button onclick="clearText()">清除节点内容</button>
+
+
+
+</body>
+</html>
