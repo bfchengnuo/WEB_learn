@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>实践题 - 选项卡</title>
+    <style type="text/css">
+     /* CSS样式制作 */  
+     *{margin:0;padding:0;font:normal 12px "微软雅黑";color:#000000;}
+     ul{list-style-type: none;}
+     a{text-decoration: none;}
+
+     #tab-list{width: 275px;height:190px;margin: 20px auto;}
+
+     #ul1{border-bottom: 2px solid #8B4513;height: 32px;}
+     #ul1 li{display: inline-block;width: 60px;line-height: 30px;text-align: center;border: 1px solid #999;border-bottom: none;margin-left: 5px;}
+     #ul1 li:hover{cursor: pointer;}
+     #ul1 li.active{border-top:2px solid #8B4513;border-bottom:2px solid #FFFFFF;}
+
+     #tab-list div{border: 1px solid #7396B8;border-top: none;}
+     #tab-list div li{height: 30px;line-height: 30px;text-indent: 8px;}
+     
+     /*定义显示和隐藏部分*/
+     .show{display: block;}.hide{display: none;}
+    </style>
+
+    <!-- js实现部分 -->
+    <script type="text/javascript">
+         
+    window.onload = function() {
+        var oUl1 = document.getElementById("ul1");
+        var aLi = oUl1.getElementsByTagName("li");
+        var oDiv = document.getElementById("tab-list");
+        var aDiv = oDiv.getElementsByTagName("div");
+        for(var i = 0; i < aLi.length; i++) {
+			// .index：表示索引，新建的一个属性值
+			// 记录当前的活动节点
+            aLi[i].index = i;
+            // onmouseover 鼠标经过事件
+            // 将所有的classname属性清空
+            aLi[i].onmouseover = function() {
+                for(var i = 0; i < aLi.length; i++) {
+                    aLi[i].className = "";
+                }
+                // 将当前的li标签设置为activity的css样式
+                this.className = "active";
+                // 设置隐藏属性
+                for(var j = 0; j < aDiv.length; j++) {
+                    aDiv[j].className = "hide";
+                }
+                // 设置外面的DIV当前为可见状态
+                aDiv[this.index].className = "show";
+            }        
+        }
+    }
+    
+    
+    </script>
+ 
+</head>
+<body>
+<!-- HTML页面布局 -->
+<div id="tab-list">
+    <ul id="ul1">
+        <li class="active">房产</li><li>家居</li><li>二手房</li>
+    </ul>
+    <div>
+        <ul>
+            <li><a href="javascript:;">275万购昌平邻铁三居 总价20万买一居</a></li>
+            <li><a href="javascript:;">200万内购五环三居 140万安家东三环</a></li>
+            <li><a href="javascript:;">北京首现零首付楼盘 53万购东5环50平</a></li>
+            <li><a href="javascript:;">京楼盘直降5000 中信府 公园楼王现房</a></li>
+        </ul>
+    </div>    
+    <div class="hide">
+        <ul>
+            <li><a href="javascript:;">40平出租屋大改造 美少女的混搭小窝</a></li>
+            <li><a href="javascript:;">经典清新简欧爱家 90平老房焕发新生</a></li>
+            <li><a href="javascript:;">新中式的酷色温情 66平撞色活泼家居</a></li>
+            <li><a href="javascript:;">瓷砖就像选好老婆 卫生间烟道的设计</a></li>
+        </ul>
+    </div>    
+    <div class="hide">
+        <ul>
+            <li><a href="javascript:;">通州豪华3居260万 二环稀缺2居250w甩</a></li>
+            <li><a href="javascript:;">西3环通透2居290万 130万2居限量抢购</a></li>
+            <li><a href="javascript:;">黄城根小学学区仅260万 121平70万抛!</a></li>
+            <li><a href="javascript:;">独家别墅280万 苏州桥2居优惠价248万</a></li>
+        </ul>
+    </div>
+</div>
+
+ 
+</body>
+</html>
+<!--
+window.onload = function() {
+        var oUl1 = document.getElementById("ul1");//1,获取id为ul1的<ul>,为第2步获取三个li标签使用
+        var aLi = oUl1.getElementsByTagName("li");//2,获取 <li>房产</li><li>家居</li><li>二手房</li>这三个li标签以便使用
+        var oDiv = document.getElementById("tab-list");//3,获取id为tab-list的<div>,给第4步使用
+        var aDiv = oDiv.getElementsByTagName("div");//4,获取三个包含内容的div
+        for(var i = 0; i < aLi.length; i++) {   //5,对第2步得到的三个li标签进行以下的循环操作
+            aLi[i].index = i;                            //6,因为第2步获得的aLi是一个数组， aLi[i].index = i相当于给数组的每一个元素添加了一个index属性，数组被改为{ {“房产”；“index”：“0”}，{“家居”；“index”：“1”}，{“二手房”；“index”：“2”}}
+            aLi[i].onmouseover = function() {   //7,监听aLi[i]标签是否有鼠标滑过，如果有就调用function
+                for(var i = 0; i < aLi.length; i++) {   
+                    aLi[i].className = "";             //8,使用循环将第2步的三个li标签的class赋值为空
+                }
+                this.className = "active";         //9,这里的this指的是第7步中进入循环时的aLi[i],例如进入循环时的i=1，则aLi[i]指代的是<li>家居</li>这一个标签，该语句就将所指代的标签的class赋值为“active”，即添加了 #ul1 li.active{border-top:2px solid #8B4513;border-bottom:2px solid #FFFFFF;}这一个css样式
+                for(var j = 0; j < aDiv.length; j++) {
+                    aDiv[j].className = "hide";       //10,这里使用循环将第4步得到的三个div给隐藏起来
+                }
+                aDiv[this.index].className = "show";  //11,我们不可以让第10 步将三个div都隐藏，必须将我们鼠标滑过的那一个标签内容显示出来，所以需要这行代码，这里的this.index就用到了第6步添加的index属性，然后修改class，即添加了.show{display: block;}这一个css样式，将所需的那个div内容显示出来
+            }        
+        }
+    } 
+ -->
