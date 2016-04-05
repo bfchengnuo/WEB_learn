@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>DOM事件</title>
+<!-- 
+		如果写在这里因为先加载找不到btn就会错误，可以
+		window.onload=function()
+		{
+		   全部js代码
+		}
+		 -->
+	</head>
+	<body>
+		<input type="button" id="btn1" value="按钮1" onclick="show()">
+		<input type="button" id="btn2" value="按钮2"></input>
+		<input type="button" id="btn3" value="按钮3"></input>
+
+		<script type="text/javascript">
+
+			function show(){
+				alert("hello!");
+			}
+			var btn1=document.getElementById("btn1");
+			var btn2=document.getElementById("btn2");
+			var btn3=document.getElementById("btn3");
+			// DOM0级事件
+			btn3.onclick=function(){
+				alert("这是DOM0级事件");
+			}
+			
+			// 创建一个对象
+			var event = {
+				// 添加一个句柄，第一个参数：给谁添加，第二个：什么类型的事件，第三个：执行的代码
+				addHandler:function(ele,type,hand){
+					// 解决浏览器的兼容问题
+					// 判断支持DOM2级事件，type不用写on
+					if (ele.addEventListener){
+						ele.addEventListener(type,hand,false);//冒泡事件
+					}else if(ele.attachEvent){
+						// IE浏览器，要写on
+						ele.attachEvent("on"+type,hand);
+					}else{
+						// ele.onclick 完全等价 ele["onclick"]
+						ele["on"+type] = hand;
+					}
+				},  //注意这里的逗号
+
+				// 删除句柄  同上
+				removeHandler:function(ele,type,hand){
+					if (ele.removeEventListener){
+						ele.removeEventListener(type,hand,false);
+					}else if(ele.detachEvent){
+						ele.detachEvent("on"+type,hand);
+					}else{
+						ele["on"+type] = null;
+					}
+				}
+				
+			}
+			// 执行部分，一定要写在对象的外面！
+			event.addHandler(btn2,"click",show);
+		</script>
+	</body>
+</html>
