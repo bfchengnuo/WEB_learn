@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="keywords" content="关键字">
+	<meta name="description" content="描述">
+	<!-- 每隔3秒刷新网页 -->
+	<!-- <meta http-equiv="refresh" content="3"> -->
+	<title>第二周</title>
+
+	<script>
+		var i = 0;
+		var sum = 1;
+		var names = ["萝","莉","控"];
+		var colors = ["black","red","blue","green","gray"];
+		// setInterval(函数名,时间间隔mm) js内置刷新
+		setInterval(showNum,1000);
+		function showNum() {
+			// document.write(i++);
+			//时间部分
+			var now = new Date();
+			// 颜色部分
+			var rgbR = parseInt(Math.random() * 255,10);
+			var rgbG = parseInt(Math.random() * 255,10);
+			var rgbB = parseInt(Math.random() * 255,10);
+			document.getElementById("show").innerHTML = names[i++%3];
+			document.getElementById("item1").innerHTML = sum;
+			document.getElementById("item2").innerHTML = now.toLocaleDateString() +"  "+ now.getHours()
+				 + ":" + now.getMinutes() + ":" + now.getSeconds();
+			// document.getElementById("item3").style.color = colors[i%5];
+			document.getElementById("item3").style.color = "rgb(" + rgbR + "," + rgbG + "," + rgbB+ ")";
+			if (sum < 100) {
+				sum++;
+			}
+		}
+	</script>
+
+</head>
+<body>
+	<h1 id="show"></h1>
+	<p id="item1"></p>
+	<p id="item2"></p>
+	<p id="item3">我可以变颜色！</p>
+</body>
+</html>
