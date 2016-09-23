@@ -1,0 +1,20 @@
+@charset "utf-8";
+.x1 {
+	list-style-position: outside;
+	list-style-image: url(images/gif-0752.gif);
+}
+body {
+	font-family: "宋体";
+	font-size: 12px;
+	line-height: 20px;
+	color: #999999;
+	text-decoration: none;
+}
+.image {
+	border: 1px solid #CCCCCC;
+}
+.clean{
+	padding: 0;
+	margin: 0;
+	display: block;
+}
