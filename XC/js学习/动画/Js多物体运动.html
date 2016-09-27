@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js多物体动画</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			var aLi = document.getElementsByTagName('li');
+			var divList = document.getElementsByTagName("div");
+
+			for (var i = aLi.length - 1; i >= 0; i--) {
+				//为了避免争抢timer 给每一个li定义一个属性,可省略
+				aLi[i].timer = null;
+				aLi[i].onmouseover = function(){
+					startMove(this,400);
+				}
+				aLi[i].onmouseout = function(){
+					startMove(this,200);
+				}
+			}
+
+			for (var i = divList.length - 1; i >= 0; i--) {
+				divList[i].defAlp = 30;
+				divList[i].onmouseover = function(){
+					startAlp(this,100);
+				}
+				divList[i].onmouseout = function(){
+					startAlp(this,30);
+				}
+			}
+		}
+
+		// obj.offsetWidth是不加边框的宽度，
+		// 如果有边框会在obj.offsetWidth的基础上加两边的边框才是总宽度，
+		// 这样会造成不准确，所以可以用获取样式的自定函数来获取宽度
+		function startMove(obj,endPos) {
+			clearInterval(obj.timer);
+			obj.timer = setInterval(function(){
+				var speed = (endPos - obj.offsetWidth)/10;
+				speed = speed > 0 ?Math.ceil(speed):Math.floor(speed);
+				if (endPos == obj.offsetWidth) {
+					clearInterval(obj.timer);
+				}else{
+					// obj.style.width = obj.offsetWidth + speed + "px";
+					//还可以这样写，避免边框的问题，替换同上
+					obj.style.width = parseInt(getStyle(obj,"width")) + speed + "px";
+				}
+			},20);
+		}
+
+		//透明度函数
+		function startAlp(obj,endPos) {
+			clearInterval(obj.timer);
+			obj.timer = setInterval(function(){
+				var speed = (endPos - obj.defAlp)/10;
+				speed = speed > 0 ?Math.ceil(speed):Math.floor(speed);
+				if (endPos == obj.defAlp) {
+					clearInterval(obj.timer);
+				}else{
+					obj.defAlp += speed;
+					obj.style.opacity = obj.defAlp/100;
+					obj.style.filter = 'alpha(opacity:'+ obj.defAlp +')';
+				}
+			},20);
+		}
+		// 获取样式的函数，第二个为样式名(也许)，返回的是字符串
+		function getStyle(obj,attr) {
+			//判断是否支持IE，否则是firefox
+			if (obj.currentStyle) {
+				return obj.currentStyle[attr];
+			}else{
+				return getComputedStyle(obj,false)[attr];
+			}
+		}
+
+		// 补充，，js中所有用.的都可以换成[],例如element.onclick <===> element['onclick']
+	</script>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul,li{
+			list-style: none;
+		}
+		ul li{
+			width: 200px;
+			height: 100px;
+			background-color: green;
+			margin-bottom: 20px;
+		}
+		div{
+			width: 200px;
+			height: 200px;
+			background-color: blue;
+			opacity: 0.3;
+			filter: alpha(opacity:30);
+			margin: 10px;
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<!-- 透明度演示 -->
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+</html>
