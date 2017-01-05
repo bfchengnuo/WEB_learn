@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+    }
+    
+    a {
+        color: #333;
+        text-decoration: none
+    }
+    
+    ul {
+        list-style: none;
+    }
+    
+    .nav {
+        height: 30px;
+        border-bottom: 5px solid #F60;
+        margin-left: 50px;
+        width: 600px;
+    }
+    
+    .nav li {
+        float: left;
+        position: relative;
+        height: 30px;
+        width: 120px
+    }
+    
+    .nav li a {
+        display: block;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        width: 120px;
+        background: #efefef;
+        margin-left: 1px;
+    }
+    
+    .subNav {
+        position: absolute;
+        top: 30px;
+        left: 0;
+        width: 120px;
+        height: 0;
+        overflow: hidden
+    }
+    
+    .subNav li a {
+        background: #ddd
+    }
+    
+    .subNav li a:hover {
+        background: #efefef
+    }
+    </style>
+    <script>
+    window.onload = function() {
+        var aLi = document.getElementsByClassName('li');
+        for (var i = 0; i < aLi.length; i++) {
+            aLi[i].onmouseover = function() {
+                var sub = this.getElementsByClassName('subNav')[0];
+                if (sub) {
+                    clearInterval(sub.timer);
+                    sub.timer = setInterval(function() {
+                        sub.style.height = sub.offsetHeight + 20 + "px";
+                        if (sub.offsetHeight > 120) {
+                            sub.style.height = 120 + 'px';
+                            clearInterval(sub.timer)
+                        }
+                    }, 30)
+                }
+            }
+            aLi[i].onmouseout = function() {
+                var sub = this.getElementsByTagName('ul')[0];
+                if (sub) {
+                    clearInterval(sub.timer);
+                    sub.timer = setInterval(function() {
+                        sub.style.height = sub.offsetHeight - 20 + "px";
+                        if (sub.offsetHeight <= 0) {
+                            clearInterval(sub.timer)
+                        }
+                    }, 30)
+                }
+            }
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <ul class="nav">
+        <li class="li"><a href="#">一级菜单</a>
+            <ul class="subNav">
+                <li><a href="#">二级菜单</a></li>
+                <li><a href="#">二级菜单</a></li>
+                <li><a href="#">二级菜单</a></li>
+                <li><a href="#">二级菜单</a></li>
+            </ul>
+        </li>
+        <li class="li"><a href="#">一级菜单</a>
+            <ul class="subNav">
+                <li><a href="#">二级菜单</a></li>
+                <li><a href="#">二级菜单</a></li>
+                <li><a href="#">二级菜单</a></li>
+                <li><a href="#">二级菜单</a></li>
+            </ul>
+        </li>
+        <li><a href="#">一级菜单</a></li>
+        <li><a href="#">一级菜单</a></li>
+        <li><a href="#">一级菜单</a></li>
+    </ul>
+</body>
+
+</html>

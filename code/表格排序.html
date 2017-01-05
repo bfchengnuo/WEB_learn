@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>table排序</title>
+    <script>
+    window.onload = function() {
+        var oTable = document.getElementById('tableTest');
+        var oTbody = oTable.tBodies[0];
+        var oBtn = document.getElementById('sort');
+        var arr = []; //用来存放每一个tr
+        var isAsc = true; //用来判断升序，还是降序
+
+        oBtn.onclick = function() {
+            for (var i = 0; i < oTbody.rows.length; i++) {
+                arr[i] = oTbody.rows[i]; //这里是把每一个tr存放到一个数组，而不是排序的依据（这里是cells[0].innerHTML）    
+            }
+
+            //数组根据cells[0].innerHTML来排序
+            arr.sort(function(td1, td2) {
+                if (isAsc) {
+                    return parseInt(td1.cells[0].innerHTML) - parseInt(td2.cells[0].innerHTML);
+                } else {
+                    return parseInt(td2.cells[0].innerHTML) - parseInt(td1.cells[0].innerHTML);
+                }
+
+            });
+            //把排序后的tr 重新插入tbody
+            for (var j = 0; j < arr.length; j++) {
+                oTbody.appendChild(arr[j]);
+            }
+            //判断升序，降序
+            isAsc = !isAsc;
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <table id="tableTest" width="400" border="1">
+        <tbody>
+            <tr>
+                <td>2</td>
+                <td>bbb</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>eee</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>ccc</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>ddd</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>aaa</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="button" id="sort" value="表格排序" />
+</body>
+
+</html>
