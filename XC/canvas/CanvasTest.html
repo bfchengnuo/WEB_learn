@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#canvas1{
+			/*不要设置宽度和高度，因为此大小不是canvas的真实大小*/
+			/*最好在标签或者js中设定大小*/
+			margin: 50px auto;
+			border: 1px solid #ccc;
+			display: block;
+		}
+	</style>
+	<script>
+		window.onload = function () {
+			var canvas1 = document.getElementById('canvas1');
+			// 不建议使用单位
+			// canvas1.width = 1000;
+			// canvas1.height = 800;
+			var context = canvas1.getContext('2d');
+
+			if (context) {
+				//支持canvas
+				//画一条直线，先设置起点、终点
+				context.moveTo(100,100);
+				context.lineTo(700,400);
+				context.lineTo(100,400);
+				context.lineTo(100,100);
+				// 粗细和颜色
+				context.lineWidth = 5;
+				context.strokeStyle= "#ff0000";
+
+				// 开始画直线
+				context.stroke();
+
+				// 填充
+				context.fillStyle = "rgb(2,100,50)";
+				context.fill();
+
+				// 分开路径，避免干扰
+				// 加入begin close后会自动形成封闭图形
+				// 如果没有close就不会封闭，他们不一定要成对出现
+				context.beginPath();
+				context.moveTo(100,80);
+				context.lineTo(750,400);
+				context.closePath();
+
+				context.strokeStyle = "#0f0";
+				context.stroke();
+			}
+		}
+	</script>
+</head>
+<body>
+	<canvas id="canvas1" width="800" height="500">
+		如果浏览器不支持，则会显示此文字
+	</canvas>
+</body>
+</html>
