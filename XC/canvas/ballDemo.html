@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#canvas{
+			margin: 0 auto;
+			display: block;
+		}
+	</style>
+	<script type="text/javascript">
+		//小球的位置，加速度、 水平、垂直方向的速度以及颜色
+		var ball = {x:512, y:100, r:20, g:2, vx:-4, vy:0, color:"#058"};
+		window.onload = function () {
+			var canvas = document.getElementById('canvas');
+			var context = canvas.getContext('2d');
+
+			canvas.width = 700;
+			canvas.height = 500;
+
+			setInterval(
+				function () {
+					render(context);
+					update();
+				},
+				50
+			);
+		}
+
+		function update() {
+			ball.x += ball.vx;
+			ball.y += ball.vy;
+			ball.vy += ball.g;
+
+			// 是否发生碰撞
+			// 坐标系的原点在左上角
+			if (ball.y >= 500-ball.r) {
+				// 先着地
+				ball.y = 500-ball.r;
+				// 速度取反
+				// 增加个摩擦系数，使其最终停下来
+				ball.vy = -ball.vy*0.5;
+			}
+		}
+
+		function render(cxt) {
+			//刷新屏幕，对一个矩形区域进行刷新
+			cxt.clearRect(0,0,cxt.canvas.width,cxt.canvas.height);
+			cxt.beginPath();
+			cxt.arc(ball.x, ball.y, ball.r,
+				0,2*Math.PI
+				);
+			cxt.closePath();
+			
+			cxt.fillStyle = ball.color;
+			cxt.fill();
+		}
+	</script>
+</head>
+<body>
+	<canvas id="canvas">
+		浏览器不支持
+	</canvas>
+</body>
+</html>
