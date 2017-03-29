@@ -1,0 +1,29 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>打字机</title>
+<script>
+	var i = 0;
+	var timeID;
+	var showString= "这是一个基于JavaScript的打字机特效，这是一段测试文字哦，也包括了英文测试。";
+
+	window.onload = function ()
+	{
+		timeID= setInterval(marquee,100);
+	}
+
+	function marquee() {
+		var div = document.getElementById('show');
+		div.innerHTML = div.innerHTML + showString.charAt(i);
+		i++;
+
+		if (i >= showString.length){
+			clearInterval(timeID);
+		}
+	}
+</script>
+</head>
+<body>
+	<div id="show"></div>
+</body>
+</html>

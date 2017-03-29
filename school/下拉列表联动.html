@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		var ops = new Array("1","2","3","4","5");
+		function change(obj) {
+			var now = obj.selectedIndex;
+			var show = document.getElementsByTagName('p')[0];
+			show.innerHTML = "当前索引为：" + now + "<br >列表的数目为：" + obj.length;
+
+			var selNew = document.getElementById('sel2');
+			switch (now) {
+				case 1:
+					selNew.options.length = 0;
+					selNew.add(new Option("1-zi1","1-zi1"),null); //text , value
+					selNew.add(new Option("1-zi2","1-zi2"),null);
+					selNew.add(new Option("1-zi3","1-zi3"),null);
+					selNew.add(new Option("1-zi4","1-zi4"),null);
+					change2(selNew);
+					break;
+				case 2:
+					selNew.options.length = 0;
+					selNew.add(new Option("2-zi1","2-zi1"),null); //text , value
+					selNew.add(new Option("2-zi2","2-zi2"),null);
+					selNew.add(new Option("2-zi3","2-zi3"),null);
+					selNew.add(new Option("2-zi4","2-zi4"),null);
+					change2(selNew);
+					break;
+				default:
+					selNew.options.length = 0;
+					selNew.add(new Option("-请选择-"),null);
+					break;
+			}
+		}
+		function change2(obj) {
+			var now = obj.selectedIndex;
+			var selNew = document.getElementById('sel3');
+			switch (now) {
+				case 0:
+					selNew.options.length = 0;
+					selNew.add(new Option("1---zi1","1---zi1"),null); //text , value
+					selNew.add(new Option("1---zi2","1---zi2"),null);
+					selNew.add(new Option("1---zi3","1---zi3"),null);
+					selNew.add(new Option("1---zi4","1---zi4"),null);
+					break;
+				case 1:
+					selNew.options.length = 0;
+					selNew.add(new Option("2---zi1","2---zi1"),null); //text , value
+					selNew.add(new Option("2---zi2","2---zi2"),null);
+					selNew.add(new Option("2---zi3","2---zi3"),null);
+					selNew.add(new Option("2---zi4","2---zi4"),null);
+					break;
+				default:
+					selNew.options.length = 0;
+					selNew.add(new Option("-请选择-"),null);
+					break;
+			}
+		}
+		function add() {
+			var sel = document.getElementById('sel');
+			var options = sel.options;
+			sel.add(new Option("测试3","test3"),options[1]);
+		}
+		function add2() {
+			var sel = document.getElementById('sel');
+			for (var i = 0; i < ops.length; i++) {
+				sel.add(new Option(ops[i],ops[i]),null);
+			}
+		}
+	</script>
+</head>
+<body>
+	<form action="">
+		<select name="sg" id="sel" onchange="change(this)">
+			<option value="pornt">-请选择-</option>
+			<option value="items1">测试1</option>
+			<option value="items2">测试2</option>
+		</select>
+		<select name="sg" id="sel2" onchange="change2(this)">
+			<option value="pornt">-请选择-</option>
+		</select>
+		<select name="sg" id="sel3" onchange="">
+			<option value="pornt">-请选择-</option>
+		</select>
+		<br>
+		<br>
+		<input type="button" value="add" onclick="add()">
+		<input type="button" value="add" onclick="add2()">
+	</form>
+	<p></p>
+</body>
+</html>

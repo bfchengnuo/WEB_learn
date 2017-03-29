@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		ul{
+			list-style-type: none;
+		}
+		a{
+			text-decoration: none;
+			display: block;
+		}
+		.select{
+			background-color: green;
+			color: white;
+		}
+		.noselect{
+			background-color: #ccc;
+			color: black;
+		}
+		.title li{
+			float: left;
+			/*padding-left: 10px;*/
+			width: 100px;
+			text-align: center;
+		}
+		#info{
+			clear: both;
+			padding-top: 10px;
+		}
+		#info p{
+			color: orange;
+			font-size: 20px;
+		}
+		.tb{
+			margin-top: 20px;
+			margin-left: 60px;
+			position: relative;
+		}
+		.btn{
+			margin-left: 150px;
+			padding: 30px;
+		}
+		.btn input{
+			width: 100px;
+			height: 20px;
+			margin-left: 10px;
+		}
+		.hintN{
+			position: absolute;
+			left: 270px;
+			bottom: 210px;
+			color: red;
+		}
+		.hintP{
+			position: absolute;
+			left: 270px;
+			bottom: 185px;
+			color: red;
+		}
+		.hintE{
+			position: absolute;
+			left: 270px;
+			bottom: 160px;
+			color: red;
+		}
+		.hintT{
+			position: absolute;
+			left: 460px;
+			bottom: 10px;
+			color: red;
+		}
+	</style>
+	<script>
+		var divs;
+		window.onload = function () {
+			divs = document.getElementsByTagName('div');
+		}
+		function check(thisform)
+		{
+			if (thisform.email.value == null || thisform.email.value == "") {
+				alert("请填写Email地址！");
+				return false;
+			}else if (thisform.pwd.value == null || thisform.pwd.value == "") {
+				alert("请输入密码！");
+				return false;
+			}else if (thisform.email.value.indexOf("@") == -1 || thisform.email.value.indexOf(".") == -1) {
+				alert("输入的邮件地址不正确！");
+				return false;
+			}else if (thisform.name.value.match(".*\\d+.*") != null) {
+				alert("姓名不能包含数字");
+				return false;
+			}else if (thisform.jjie.value == null || thisform.jjie.value == "") {
+				
+			}
+			return true;
+		}
+		//选项卡
+		function isSelect(obj,key) {
+			var as = document.getElementsByTagName('a');
+			var div = document.getElementById('info');
+			for (var i = 0; i < 3; i++) {
+				as[i].className = "noselect";
+			}
+			obj.className = "select";
+			if (key == 0) {
+				div.hidden = "";
+			}else {
+				div.hidden = "hidden";
+			}
+		}
+		function checkEmail(obj) {
+			if (obj.value == null || obj.value == "") {
+				divs[5].innerHTML = "请填写Email地址！";
+			}else if (obj.value.indexOf("@") == -1 || obj.value.indexOf(".") == -1) {
+				divs[5].innerHTML = "输入的邮件地址不正确！";
+			}else {
+				divs[5].innerHTML = "";
+			}
+		}
+		function checkName(obj) {
+			if (obj.value == null || obj.value == "") {
+				divs[3].innerHTML = "请填写用户名！";
+			}else if (obj.value.match(".*\\d+.*") != null) {
+				divs[3].innerHTML = "用户名不能有数字！";
+			}else {
+				divs[3].innerHTML = "";
+			}
+		}
+		function checkPWD(obj) {
+			if (obj.value == null || obj.value == "") {
+				divs[4].innerHTML = "请填写密码！";
+			}else if (obj.value.length < 6) {
+				divs[4].innerHTML = "密码长度小于6位！";
+			}else {
+				divs[4].innerHTML = "";
+			}
+		}
+		function checkText(obj) {
+			if (obj.value == null || obj.value == "") {
+				divs[6].innerHTML = "请填写简介！";
+			}else if (obj.value.length < 20) {
+				divs[6].innerHTML = "内容不能低于20字！";
+			}else {
+				divs[6].innerHTML = "";
+			}
+		}
+		// 清除默认的数据,并且改为输入为黑色
+		function clean (obj) {
+			obj.style.color = 'black';
+			if (obj.value == "example@gmail.com") {
+				obj.value = "";
+			}
+		}
+		// 重置按钮，恢复提示的暗色
+		function resetColor() {
+			var bd = document.getElementById('biaodan');
+			bd.email.style.color = "#ccc";
+		}
+	</script>
+</head>
+<body>
+	<div class="title">
+		<ul>
+			<li><a  onclick="isSelect(this,0)" class="select" href="javascript:void(0)">看不清1</a></li>
+			<li><a  onclick="isSelect(this,1)" class="noselect" href="javascript:void(0)">看不清2</a></li>
+			<li><a  onclick="isSelect(this,2)" class="noselect" href="javascript:void(0)">看不清3</a></li>
+		</ul>
+	</div>
+	<div id="info">
+		<p>立即抢注</p>
+		<form action="" id="biaodan" onsubmit="return check(this)">
+			<div class="tb">
+				<table>
+				<tr>
+					<td>用户名：</td>
+					<td><input onblur="checkName(this)" name="name" type="text"></td>
+				</tr>
+				<tr>
+					<td>密&nbsp;&nbsp;码：</td>
+					<td><input onblur="checkPWD(this)" name="pwd" type="password"></td>
+				</tr>
+				<tr>
+					<td>Email：</td>
+					<td><input name="email" type="text" onblur="checkEmail(this)" onfocus="clean(this)" style="color: #ccc" value="example@gmail.com"></td>
+				</tr>
+				<tr>
+					<td>个人简介：</td>
+					<td><textarea name="jjie" id="context" onblur="checkText(this)" cols="50" rows="10"></textarea></td>
+				</tr>
+				</table>
+				<div class="hintN"></div>
+				<div class="hintP"></div>
+				<div class="hintE"></div>
+				<div class="hintT"></div>
+			</div>
+			
+			<div class="btn">
+				<input type="submit" value="提交">
+				<input type="reset" value="重置" onclick="resetColor()" />
+			</div>
+		</form>
+	</div>
+</body>
+</html>

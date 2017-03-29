@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		// var str = "this is JavaScript";
+		// var t = str.indexOf("a");
+		// var t2 = str.indexOf("a",str.indexOf("a") + 1);
+		// alert(t + ":" + t2);
+
+		// var newMessage = t + ":";
+		// while (true) {
+		// 	t = str.indexOf("a",t + 1);
+		// 	if (t == -1) {
+		// 		break;
+		// 	}
+		// 	newMessage += t + ":";
+		// }
+		// alert(newMessage);
+		// t = str.indexOf("a",t + 1);
+		// console.log(t);
+		// t = str.indexOf("a",t + 1);
+		// console.log(t + "2");
+		// 
+		// var patt = new RegExp("\\.");
+		// alert(patt.test("hello world"));
+		// var patt2 = new RegExp("o", "g");
+		// var flag = patt2.exec("hello world");
+		// while (flag != null) {
+		// 	console.log(flag);
+		// 	alert(flag.index)
+		// 	flag = patt2.exec("hello world");
+		// }
+		// var t = "abac aw".match("a");
+		// alert(t[1]);
+		// 
+		function patt(obj) {
+			var pattTemp = /^a/;
+			if(pattTemp.test(obj.value)){
+				alert("a开头的字符");
+				// return;
+			}
+			pattTemp = /\.$/;
+			if (pattTemp.test(obj.value)) {
+				alert("以点结尾");
+				// return;
+			}
+			pattTemp = /^abc.*abc$/;
+			if (pattTemp.test(obj.value)) {
+				alert("abc开头、结尾");
+				// return;
+			}
+			pattTemp = /stu/;
+			if (pattTemp.test(obj.value)) {
+				alert("包含stu");
+				return;
+			}
+			pattTemp = /^(1[0-1]|[0-9])?\d$/;
+			if (pattTemp.test(obj.value)) {
+				alert("包含stu");
+				return;
+			}
+			//  /^[a-z,A-Z]\w{3,15}$/
+			//  /^\w{4,10}$/
+			//  /^[1-2]\d{3}-[1-12]-[1-31]$/  1900-2009
+		}
+	</script>
+</head>
+<body>
+	<input type="text" id="texts" onblur="patt(this)">
+</body>
+</html>

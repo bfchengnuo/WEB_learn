@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表格DOM</title>
+	<style type="text/css" media="screen">
+		.main{
+			text-align: center;
+			margin: 0 auto;
+			width: 400px;
+		}
+		.main td{
+			width: 100px;
+		}
+		.title{
+			font-weight: bold;
+		}
+		.titleRev{
+			font-weight: bold;
+			color: red;
+		}
+		input{
+			width: 30px;
+		}
+		.btn{
+			width: 50px;
+		}
+	</style>
+	<script type="text/javascript">
+		var flag = true;
+		function insert() {
+			var tb = document.getElementById('tb');
+			var inputs = document.getElementsByTagName('input');
+			var newRow = tb.insertRow(Number(inputs[4].value));
+			newRow.insertCell(0).innerHTML = inputs[0].value;
+			newRow.insertCell(1).innerHTML = inputs[1].value;
+			newRow.insertCell(2).innerHTML = inputs[2].value;
+			newRow.insertCell(3).innerHTML = inputs[3].value;
+		}
+		function del() {
+			var tb = document.getElementById('tb');
+			var num = Number(document.getElementsByTagName('input')[6].value);
+			tb.deleteRow(num);
+		}
+		function delL() {
+			var tb = document.getElementById('tb');
+			var inputs = document.getElementsByTagName('input');
+			var cells = tb.rows[inputs[8].value].cells;
+			cells[inputs[9].value - 1].innerHTML = "";
+		}
+		function revCss() {
+			var tb = document.getElementById('tb');
+			var title = tb.rows[0];
+			if (flag) {
+				title.className = 'titleRev';
+				flag = false;
+			}else {
+				title.className = 'title';
+				flag = true;
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>表格的操作</h1>
+	<div class="main">
+		<table border="1" cellspacing="0" cellpadding="0" id="tb">
+			<tr class="title">
+				<td>姓名</td>
+				<td>班级</td>
+				<td>专业</td>
+				<td>成绩</td>
+			</tr>
+			<tr>
+				<td>小米</td>
+				<td>3</td>
+				<td>软件</td>
+				<td>84</td>
+			</tr>
+			<tr>
+				<td>小红</td>
+				<td>3</td>
+				<td>软件</td>
+				<td>99</td>
+			</tr>
+			<tr>
+				<td>小明</td>
+				<td>5</td>
+				<td>软件</td>
+				<td>67</td>
+			</tr>
+			<tr>
+				<td>小刚</td>
+				<td>4</td>
+				<td>AR</td>
+				<td>66</td>
+			</tr>
+			<tr>
+				<td>匿名</td>
+				<td>1</td>
+				<td>linux</td>
+				<td>88</td>
+			</tr>
+		</table>
+		<p>添加学生：姓名<input type="text" >班级<input type="text">
+		专业<input type="text">成绩<input type="text"></p>
+		<p>插入到<input type="text">行 <input class="btn" type="button" value="插入" onclick="insert()"></p>
+		<hr>
+		<p>删除<input type="text">行 <input class="btn" type="button" value="删除" onclick="del()"></p>
+		<hr>
+		<p>删除<input type="text">行中的<input type="text">列的信息 <input type="button" class="btn" value="删除" onclick="delL()"></p>
+		<hr>
+		<p>修改/恢复表头样式 <input type="button" class="btn" value="改变" onclick="revCss()"></p>
+	</div>
+</body>
+</html>
