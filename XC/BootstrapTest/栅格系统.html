@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>栅格系统</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .test{
+            width: 500px;
+            height: 300px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        会被分成 12 列，col 就表示列了
+        ，     普通偏移1/3
+        col-lg-3 --- 在超大屏幕中占1/4 （3/12 == 1/4）
+        col-md-4 --- 在普通占1/3
+        col-sm-6 --- 在平板1/2
+        col-xs-12 --- 在手机1/1
+        col-lg-offset-3 --- 在超大屏幕中时偏移 1/4
+    -->
+    <div class="test col-lg-3 col-md-4 col-sm-6 col-xs-12 col-lg-offset-3 col-md-offset-4"></div>
+</body>
+</html>

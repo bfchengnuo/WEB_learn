@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关于排版</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+    <!--下面是些 HTML5 的特性,但是在 Bootstrap 下有些不一样，比如字体大小-->
+    <p> <mark>别看我了</mark>，我只是一段测试文字，<del>不够长怎么办？</del> <ins>那就多加点点点点点</ins>点点点点点点点点点点点点点点点点点点点点点点点点点点</p>
+    <p><small>别看我了</small>，我只是一段测试文字，不够长怎么办？那就多加点点点点点点点点点点点点点点点点点点点点点点点点点点点点点点点</p>
+
+    <p class="text-left">我是测试文字</p>
+    <p class="text-center">我是测试文字</p>
+
+    <!--大小写转换，以及首字母大写-->
+    <p class="text-uppercase">hello</p>
+    <p class="text-lowercase">HELlo</p>
+    <p class="text-capitalize">hello</p>
+
+    <h1>表格</h1>
+    <!--
+        table-striped --- 斑马线效果
+        table-bordered --- 边框的效果
+        table-hover --- 鼠标悬停效果
+    -->
+    <table class="table table-striped table-bordered table-hover">
+        <tr class="warning">
+            <th>items1</th>
+            <th>items2</th>
+            <th>items3</th>
+            <th>items4</th>
+        </tr>
+        <tr class="success">
+            <th>items1</th>
+            <th>items2</th>
+            <th>items3</th>
+            <th>items4</th>
+        </tr>
+        <tr class="info">
+            <th>items1</th>
+            <th>items2</th>
+            <th>items3</th>
+            <th>items4</th>
+        </tr>
+        <tr class="active">
+            <th>items1</th>
+            <th>items2</th>
+            <th>items3</th>
+            <th>items4</th>
+        </tr>
+        <tr>
+            <th>items1</th>
+            <th>items2</th>
+            <th>items3</th>
+            <th>items4</th>
+        </tr>
+    </table>
+
+    <h1>表单</h1>
+    <hr>
+    <!--表单,加了状态相关的class-->
+    <form class="form-inline">
+        <div class="form-group has-success">
+            <label for="">输入框</label>
+            <input type="text" placeholder="请输入" class="form-control">
+        </div>
+        <br>
+        <div class="form-group">
+            <button class="btn btn-default">按钮</button>
+            <button class="btn btn-danger">按钮</button>
+            <button class="btn btn-warning btn-block" disabled="disabled">按钮</button>
+            <a href="#" class="btn btn-info">a标签</a>
+        </div>
+    </form>
+
+
+</body>
+</html>
