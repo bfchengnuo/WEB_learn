@@ -1,0 +1,298 @@
+Javascript BOM
+
+	BOM是browser object model的缩写，简称浏览器对象模型
+	BOM提供了独立于内容而与浏览器窗口进行交互的对象
+	由于BOM主要用于管理窗口与窗口之间的通讯，因此其核心对象是window
+	BOM由一系列相关的对象构成，并且每个对象都提供了很多方法与属性
+	BOM缺乏标准，JavaScript语法的标准化组织是ECMA，DOM的标准化组织是W3C
+	BOM最初是Netscape浏览器标准的一部分
+
+window：
+	window对象是BOM的顶层(核心)对象，所有对象都是通过它延伸出来的，也可以称为window的子对象
+
+	由于window是顶层对象，因此调用它的子对象时可以不显示的指明window对象，例如下面两行代码是一样的：
+
+	document.write("www.dreamdu.com");
+	window.document.write("www.dreamdu.com");
+	全局的window对象
+	JavaScript中的任何一个全局函数或变量都是window的属性
+
+	var sTest="dreamdu";
+	document.write(sTest==window.sTest);
+
+	结果为true
+
+	常用函数：
+
+		window.alert("要显示的对话框");
+		
+		window.confirm("可选择式对话框");
+		
+		window.prompt(str1,str2);
+		str1:表示要显示在消息对话框中的文本，不可修改
+		str2:文本框中的内容，可以修改
+
+		窗体控制函数
+		JavaScript moveBy() 函数
+		JavaScript moveTo() 函数
+		JavaScript resizeBy() 函数
+		JavaScript resizeTo() 函数
+
+		窗体滚动轴控制函数
+		JavaScript scrollTo() 函数
+		JavaScript scrollBy() 函数
+
+		窗体焦点控制函数
+		JavaScript focus() 函数
+		JavaScript blur() 函数
+
+		新建窗体函数
+		JavaScript open() 函数
+		JavaScript close() 函数
+		JavaScript opener 属性
+
+		对话框函数
+		JavaScript alert() 函数
+		JavaScript confirm() 函数
+		JavaScript prompt() 函数
+
+		状态栏属性
+		JavaScript window.defaultStatus 属性
+		JavaScript window.status 属性
+
+		时间等待与间隔函数
+		JavaScript setTimeout() 函数
+		JavaScript clearTimeout() 函数
+		JavaScript setInterval() 函数
+		JavaScript clearInterval() 函数
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+document:
+	document是BOM中最重要对象之一
+	document对象是window对象的属性
+	document对象包含一个节点对象，此对象包含每个单独页面的所有HTML元素，这就是W3C的DOM对象
+
+	由于document代表HTML文档的内容，因此可以通过它表示文档中加载的一些元素，这些元素全部通过集合访问。
+	anchors -- 文档中所有锚(a name="aname")的集合
+	applets -- 文档中所有applet标签表示的内容的集合
+	embeds -- 文档中所有embed标签表示的内容的集合
+	forms -- 文档中所有form标签表示的内容的集合
+	images -- 文档中所有image标签表示的内容的集合
+	links -- 文档中所有a(链接)标签表示的内容的集合
+
+	document函数
+	JavaScript write() 函数
+	JavaScript writeln() 函数
+	JavaScript document.open() 函数
+	JavaScript document.close() 函数
+
+	示例
+	<form name="form1"><a href="http://www.dreamdu.com/xhtml/" name="a1">xhtml</a></form>
+	<form name="form2"><a href="http://www.dreamdu.com/css/" name="a2">css</a></form>
+	<form name="form3"><a href="http://www.dreamdu.com/javascript/" name="a3">javascript</a></form>
+
+	<input type="button" value="显示第二个表单的名称" onclick="alert(document.forms[1].name)" />
+	<input type="button" value="显示第二个表单的名称第二种方法" onclick="alert(document.forms['form2'].name)" />
+	<input type="button" value="显示第三个链接的名称" onclick="alert(document.links[2].name)" />
+	<input type="button" value="显示第三个链接的名称第二种方法" onclick="alert(document.links['a3'].name)" />
+	<input type="button" value="显示第三个链接href属性的值" onclick="alert(document.links[2].href)" />
+
+	表示第二个表单的方法：document.forms[1]或document.forms["form2"]
+
+	表示第三个链接的方法：document.links[2]或document.links["a3"]
+
+	表示第三个链接href属性的方法：document.links[2].href
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+frames:
+	frames，中文"框架"frames对象是window对象的属性
+	如果页面使用框架，将产生一个框架集合frames，在集合中可用数字从0开始，从左到右，逐行索引)或名字索引框架
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+history:
+	history，中文"历史"
+	history对象是window对象的属性
+	浏览者通常可以使用浏览器的前进与后退按钮访问曾经浏览过的页面。JavaScript的history对象记录了用户曾经浏览过的页面，并可以实现浏览器前进与后退相似的导航功能
+	可以通过back函数后退一个页面，forward函数前进一个页面，或者使用go函数任意后退或前进页面，还可以通过length属性查看history对象中存储的页面数
+	history对象函数
+	JavaScript history.go() 函数 -- 前进或后退指定的页面数
+	JavaScript history.back() 函数 -- 后退一页
+	JavaScript history.forward() 函数 -- 前进一页
+
+	history对象属性
+	JavaScript length 属性 -- history对象中缓存了多少个URL
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+location:
+	location用于获取或设置窗体的URL，并且可以用于解析URL，是BOM中最重要的对象之一,location，中文"位置"
+location既是window对象的属性又是document对象的属性
+location包含8个属性，其中7个都是当前窗体的URL的一部分，剩下的也是最重要的一个是href属性，代表当前窗体的URL,location的8个属性都是可读写的，但是只有href与hash的写才有意义。例如改变location.href会重新定位到一个URL，而修改location.hash会跳到当前页面中的anchor(<a id="name">或者<div id="id">等)名字的标记(如果有)，而且页面不会被重新加载
+
+document.write(window.location==document.location);
+
+其它见示意图
+
+location.href = "要跳转的页面地址";
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+navigator:
+	navigator对象通常用于检测浏览器与操作系统的版本
+	navigator，中文"导航器"
+	navigator对象是window对象的属性
+	由于navigator没有统一的标准，因此各个浏览器都有自己不同的navigator版本
+	常用的navigator属性
+	appCodeName -- 浏览器代码名的字符串表示
+	appName -- 官方浏览器名的字符串表示
+	appVersion -- 浏览器版本信息的字符串表示
+	cookieEnabled	-- 如果启用cookie返回true，否则返回false
+	javaEnabled -- 如果启用java返回true，否则返回false
+	platform -- 浏览器所在计算机平台的字符串表示
+	plugins -- 安装在浏览器中的插件数组
+	taintEnabled -- 如果启用了数据污点返回true，否则返回false
+	userAgent	-- 用户代理头的字符串表示
+
+	navigator中最重要的是userAgent属性，返回包含浏览器版本等信息的字符串，其次cookieEnabled也很重要，使用它可以判断用户浏览器是否开启cookie。
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+screen:
+	screen对象用于获取用户的屏幕信息
+	screen对象是window对象的属性
+	screen对象属性
+	JavaScript availHeight 属性 -- 窗口可以使用的屏幕高度，单位像素
+	JavaScript availWidth 属性 -- 窗口可以使用的屏幕宽度，单位像素
+	JavaScript colorDepth 属性 -- 用户浏览器表示的颜色位数，通常为32位(每像素的位数)
+	JavaScript pixelDepth 属性 -- 用户浏览器表示的颜色位数，通常为32位(每像素的位数)（IE不支持此属性）
+	JavaScript height 属性 -- 屏幕的高度，单位像素
+	JavaScript width 属性 -- 屏幕的宽度，单位像素
+
+	availWidth与availHeight属性非常有用，例如：可以使用下面的代码填充用户的屏幕：
+
+	示例
+	window.moveTo(0,0);
+	window.resizeTo(screen.availWidth, screen.availHeight);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DOM和BOM的不同？
+
+
+Document Object Model（文档对象模型），就是把「文档」当做一个「对象」来看待。
+Browser Object Model（浏览器对象模型）,即把「浏览器」当做一个「对象」来看待。
+区别：DOM描述了处理网页内容的方法和接口，BOM描述了与浏览器进行交互的方法和接口。
+
+在 DOM 中，文档中的各个组件（component），可以通过 object.attribute 这种形式来访问。一个 DOM 会有一个根对象，这个对象通常就是 document。而 BOM 除了可以访问文档中的组件之外，还可以访问浏览器的组件，比如问题描述中的 navigator（导航条）、history（历史记录）等等。在这种 「XOM」的模型中，最应该理解的就是 Object Model。Object Model 就表示你可以通过像操作对象一样，来操作这个 X。再解释一下什么是对象（Object）。在编程领域中，对象就是指的一种拥有具体数据（Data）并且具有（并不总是）特定行为（Behavior）的东西。例如，一个人 ，就可以看做一个对象。人的年龄、性别、身高、体重就是上文说的具体「数据」，通常将对象拥有的具体数据称作对象的「属性（Attribute）」；而人吃饭，睡觉，行走等能力，就是上文所说的「行为」，通常，我们把对象的行为称作对象的「方法（Method）」。另外，对象是可以嵌套的，也就是是说，一个对象的属性也可以是对象。上文所说的「像操作对象一样」，最主要就是指访问对象的属性和调用对象的方法。对象的属性可以通过 object.attribute 这种形式来访问，对象的方法可以通过 object.method(arguments) 这种形式来调用。对应到 DOM 中，document 这个根对象就有很多属性，例如 title 就是 document 的一个属性，可以通过 document.title 访问；document 对象也有很多方法，例如 getElementById，可以通过 document.getElementById(nodeId) 调用。
+
+
+1. DOM 是 W3C 的标准； [所有浏览器公共遵守的标准]
+2. BOM 是 各个浏览器厂商根据 DOM
+在各自浏览器上的实现;[表现为不同浏览器定义有差别,实现方式不同]
+3. window 是 BOM 对象，而非 js 对象；
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+window
+window.close(); //关闭窗口 
+ 
+window.alert("message"); //弹出一个具有OK按钮的系统消息框，显示指定的文本 
+ 
+window.confirm("Are you sure?"); //弹出一个具有OK和Cancel按钮的询问对话框，返回一个布尔值 
+ 
+window.prompt("What's your name?", "Default"); //提示用户输入信息，接受两个参数，即要显示给用户的文本和文本框中的默认值，将文本框中的值作为函数值返回 
+ 
+window.status //可以使状态栏的文本暂时改变 
+ 
+window.defaultStatus //默认的状态栏信息，可在用户离开当前页面前一直改变文本 
+ 
+window.setTimeout("alert('xxx')", 1000); //设置在指定的毫秒数后执行指定的代码，接受2个参数，要执行的代码和等待的毫秒数 
+ 
+window.clearTimeout("ID"); //取消还未执行的暂停，将暂停ID传递给它 
+ 
+window.setInterval(function, 1000); //无限次地每隔指定的时间段重复一次指定的代码，参数同setTimeout()一样 
+ 
+window.clearInterval("ID"); //取消时间间隔，将间隔ID传递给它 
+ 
+window.history.go(-1); //访问浏览器窗口的历史，负数为后退，正数为前进 
+ 
+window.history.back(); //同上 
+ 
+window.history.forward(); //同上 
+ 
+window.history.length //可以查看历史中的页面数  
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+document
+
+document对象：实际上是window对象的属性，document == window.document为true，是唯一一个既属于BOM又属于DOM的对象 
+ 
+document.lastModified //获取最后一次修改页面的日期的字符串表示 
+ 
+document.referrer //用于跟踪用户从哪里链接过来的 
+ 
+document.title //获取当前页面的标题，可读写 
+ 
+document.URL //获取当前页面的URL，可读写 
+ 
+document.anchors[0]或document.anchors["anchName"] //访问页面中所有的锚 
+ 
+document.forms[0]或document.forms["formName"] //访问页面中所有的表单 
+ 
+document.images[0]或document.images["imgName"] // 访问页面中所有的图像 
+ 
+document.links [0]或document.links["linkName"] //访问页面中所有的链接 
+ 
+document.applets [0]或document.applets["appletName"] //访问页面中所有的Applet 
+ 
+document.embeds [0]或document.embeds["embedName"] //访问页面中所有的嵌入式对象 
+ 
+document.write(); 或document.writeln(); //将字符串插入到调用它们的位置 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+location
+
+location对象：表示载入窗口的URL，也可用window.location引用它 
+ 
+location.href //当前载入页面的完整URL，如http://www.somewhere.com/pictures/index.htm 
+ 
+location.portocol //URL中使用的协议，即双斜杠之前的部分，如http 
+ 
+location.host //服务器的名字，如www.wrox.com 
+ 
+location.hostname //通常等于host，有时会省略前面的www 
+ 
+location.port //URL声明的请求的端口，默认情况下，大多数URL没有端口信息，如8080 
+ 
+location.pathname //URL中主机名后的部分，如/pictures/index.htm 
+ 
+location.search //执行GET请求的URL中的问号后的部分，又称查询字符串，如?param=xxxx 
+ 
+location.hash //如果URL包含#，返回该符号之后的内容，如#anchor1 
+ 
+location.assign("http:www.baidu.com"); //同location.href，新地址都会被加到浏览器的历史栈中 
+ 
+location.replace("http:www.baidu.com"); //同assign()，但新地址不会被加到浏览器的历史栈中，不能通过back和forward访问 
+ 
+location.reload(true | false); //重新载入当前页面，为false时从浏览器缓存中重载，为true时从服务器端重载，默认为false 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+navigator
+
+`navigator`对象：包含大量有关Web浏览器的信息，在检测浏览器及操作系统上非常有用，也可用window.navigator引用它 
+ 
+`navigator.appCodeName` //浏览器代码名的字符串表示 
+ 
+navigator.appName //官方浏览器名的字符串表示 
+ 
+navigator.appVersion //浏览器版本信息的字符串表示 
+ 
+navigator.cookieEnabled //如果启用cookie返回true，否则返回false 
+ 
+navigator.javaEnabled //如果启用java返回true，否则返回false 
+ 
+navigator.platform //浏览器所在计算机平台的字符串表示 
+ 
+navigator.plugins //安装在浏览器中的插件数组 
+ 
+navigator.taintEnabled //如果启用了数据污点返回true，否则返回false 
+ 
+navigator.userAgent //用户代理头的字符串表示  
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+screen
+
+screen对象：用于获取某些关于用户屏幕的信息，也可用window.screen引用它 
+ 
+screen.width/height //屏幕的宽度与高度，以像素计 
+ 
+screen.availWidth/availHeight //窗口可以使用的屏幕的宽度和高度，以像素计 
+ 
+screen.colorDepth //用户表示颜色的位数，大多数系统采用32位 
+ 
+window.moveTo(0, 0); 
+ 
+window.resizeTo(screen.availWidth, screen.availHeight); //填充用户的屏幕  

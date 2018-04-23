@@ -1,0 +1,23 @@
+Meta Tag µÄ¼ò½é
+
+Ò»°ã³£ÓÃµÄ¸ñÊ½ÈçÏÂ£º
+
+<Title>All Products Online</title>
+ÕâËäËµ²»ÊÇmetaµÄÒ»²¿·Ý£¬µ«ÊÇÒ²²»¿ÉºöÂÔ£¬×Ü³¤¶È²»Òª³¬¹ý85¸öCharacter (Ô¼10¸ö×Ö)¡£
+
+
+<meta http-quive="content-type" content="text/html; charset="iso-8859-1">
+ËµÃ÷ÍøÕ¾µÄ¸ñÊ½¼°±àÂë·½Ê½£¬ÁíÍâÕâ¸ö¹¦ÄÜÒ²¿ÉÒÔÄÃÀ´ËµÃ÷ÍøÕ¾µÄÃû³Æ¡£
+
+
+<meta name="keyword" contents="¹Ø¼ü×ÖÒ», ¹Ø¼ü×Ö¶þ, ¹Ø¼ü×ÖÈý, ¡­..">
+²ùÃ÷Õû¸öÍøÕ¾µÄ¹Ø¼ü×Ö£¬¹Ø¼ü×Ö¼äÓÃ¶ºµã¸ô¿ª£¬×Ü³¤¶È×îºÃ²»Òª³¬¹ý1000¸öCharacter (Ô¼44¸ö×Ö)¡£
+
+
+<meta name="description" contents="Õû¸öÍøÕ¾µÄÃèÊö¡­.">
+²ùÃ÷Õû¸öÍøÕ¾ÎªºÎÎüÒýÈËµÄµØ·½£¬¿ÉÓÃ¶ºµã¸ô¿ª£¬×Ü³¤¶È×îºÃ²»Òª³¬¹ý200¸öCharacter (Ô¼15¸ö×Ö)£¬ÈôÎÄÕÂÕæµÄÌ«³¤£¬¿ÉÒÔÇÐ¸î³ÉÁ½¸ö²¿·Ö£¬½Ï²»ÖØÒªµÄ²¿·ÖÖÃÈëÏÂÒ»¸öDescription¡£
+
+
+<meta name="robots" content=" ALL, NONE, INDEX, NOINDEX, FOLLOW, NOFOLLOW">
+´Ë¹¦ÄÜÊÇÒª¸øËÑÑ°ÒýÇæÊ¹ÓÃµÄ£¬ÊÇÒªÓÃÀ´¸æËßSpiderÄÄÐ©ÍøÒ³ÊÇÒªÈ¥ß¢È¡µÄ»ò²»ÓÃÈ¥ß¢È¡µÄ£¬Ò»°ã¶¼Éè¶¨³ÉAll(ÄÚ¶¨Öµ)¡£ 
+
