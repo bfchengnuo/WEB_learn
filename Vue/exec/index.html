@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <title>Vue入门</title>
+  <!-- 放在头部引用，避免抖屏现象 -->
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <h1>{{msg}}</h1>
+    <p v-text="num" v-on:click="handleClick"></p>
+  </div>
+
+  <div id="test">
+    <div v-bind:title="title">test的div</div>
+  </div>
+
+  <script>
+    new Vue({
+      el: "#root",
+      // template: "<h1>{{msg}}</h1>",
+      data: {
+        msg: "Hello World!",
+        num: 123
+      },
+      methods: {
+        handleClick: function () {
+          // alert("test")
+          this.msg = "Loli"
+        }
+      }
+    })
+
+    new Vue({
+      el: "#test",
+      data: {
+        title: "这是title"
+      }
+    })
+  </script>
+</body>
+</html>

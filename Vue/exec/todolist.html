@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <title>TodoList</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <input type="text" v-model="content">
+    <button @click="mSubmit">提交</button>
+
+    <ul>
+      <li v-for="(item, index) of list" :key="index">
+        {{item}}
+      </li>
+    </ul>
+    <hr>
+    <ul>
+      <!-- 使用组件 -->
+      <!-- 根据发布-订阅，监听内部组件的自定义事件 -->
+      <todo-item v-for="(item, index) of list" :key="index" 
+        :content="item"
+        :index="index"
+        @delete="handleDelete"
+      >
+        
+      </todo-item>
+    </ul>
+  </div>
+
+
+  <script>
+
+    // 定义全局组件
+    Vue.component('todo-item', {
+      // 接收传入的属性
+      props: ['content', 'index'],
+      template: '<li @click="handleClick">{{content}}</li>',
+      // 因为模板也是一个实例可以定义事件
+      methods: {
+        handleClick: function () {
+          // 向外发布一个自定义事件（订阅-发布模型）, 并且将 index 传递过去
+          this.$emit('delete', this.index)
+        }
+      }
+    })
+
+    // 定义局部组件,必须要在 Vue 实例中声明才能用
+    var TodoItem = {
+      template: '<li>item</li>'
+    }
+
+    new Vue({
+      el: "#root",
+      // components: {
+      //   // 声明局部组件，如果键和值相同可以写一个
+      //   'todo-item': TodoItem
+      // },
+      data: {
+        content: '',
+        list: []
+      },
+      methods: {
+        mSubmit: function () {
+          this.list.push(this.content)
+          this.content = ''
+        },
+        handleDelete: function (index) {
+          this.list.splice(index, 1)
+        }
+      }
+    })
+  </script>
+</body>
+</html>

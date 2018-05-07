@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <title>其他标签</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <button @click="myClick">Test</button>
+    <div v-if="flag">{{text}}</div>
+
+    <ul>
+      <li v-for="(item,index) of list" :key="index">{{item}}</li>
+      <!-- <li v-for="item of list" :key="item">{{item}}</li> -->
+    </ul>
+  </div>
+
+
+  <script>
+    new Vue({
+      el: "#root",
+      data: {
+        text: "我是内容",
+        flag: true,
+        list: [1,2,3]
+      },
+      methods: {
+        myClick: function () {
+          this.flag = !this.flag
+        }
+      }
+    })
+  </script>
+</body>
+</html>

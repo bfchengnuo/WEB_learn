@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <title>双向绑定&amp;计算属性</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <input type="text" v-model="content">
+    <div>{{content}}</div>
+  </div>
+
+  <div id="cal">
+    <input type="text" v-model="firstName">
+    <input type="text" v-model="lastName">
+    <div>{{fullName}}</div>
+    <div>{{count}}</div>
+  </div>
+
+
+  <script>
+    new Vue({
+      el: "#root",
+      data: {
+        content: "is Content"
+      }
+    })
+
+    new Vue({
+      el: "#cal",
+      data: {
+        firstName: "",
+        lastName: "",
+        count: 0
+      },
+      computed: {
+        // 计算属性声明
+        fullName: function () {
+          // 再次使用 fullName 时，如果这两个变量没有改变会使用缓存值
+          // 避免重复进行计算
+          return this.firstName + " " + this.lastName
+        }
+      },
+      watch: {
+        // 侦听器
+        firstName: function () {
+          this.count++
+        },
+        lastName: function () {
+          this.count++
+        }
+      }
+    })
+  </script>
+</body>
+</html>
