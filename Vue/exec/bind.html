@@ -13,9 +13,9 @@
 
   <div id="cal">
     <input type="text" v-model="firstName">
-    <input type="text" v-model="lastName">
-    <div>{{fullName}}</div>
-    <div>{{count}}</div>
+    <input type="text" v-model="lastName"> <br>
+    拼接的全名称：<div>{{fullName}}</div>
+    字母统计：<div>{{count}}</div>
   </div>
 
 
@@ -44,11 +44,11 @@
       },
       watch: {
         // 侦听器
-        firstName: function () {
-          this.count++
+        firstName: function (newData, oldData) {
+          this.count += (newData.length - oldData.length);
         },
-        lastName: function () {
-          this.count++
+        lastName: function (newData, oldData) {
+          this.count += (newData.length - oldData.length);
         }
       }
     })
