@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <title>Vue插槽</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <!-- <child content="<p>hello</p>"></child> -->
+    <child>
+      <p>hello</p>
+      <p slot="one">one</p>
+      <p slot="two">two</p>
+    </child>
+
+    <show>
+      <!-- 固定写法，template 开始 -->
+      <template slot-scope="props">
+        <h2>{{props.item}}</h2>
+      </template>
+    </show>
+  </div>
+
+
+  <script>
+    Vue.component('child', {
+      props: ['content'],
+      // ES6 语法
+      // template: `<div>
+      //           <p>Dear</p>
+      //           <slot>默认内容</slot>
+      //           </div>`
+      template: `<div>
+                  <slot name="one"></slot>
+                  <p>Dear</p>
+                  <slot name="two"></slot>
+                </div>`
+    });
+
+    Vue.component('show', {
+      data: function () {
+        return {
+          list: [1,2,3,4]
+        };
+      },
+      template: `<div>
+                  <slot 
+                    v-for="item of list"
+                    :item=item
+                  ></slot>
+                </div>`
+    })
+
+    var vm = new Vue({
+      el: "#root"
+    })
+  </script>
+</body>
+</html>

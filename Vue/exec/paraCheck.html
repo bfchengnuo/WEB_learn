@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <title>Vue组件参数校验</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <!-- 使用 : 标志着后面是个 js 表达式，使用 HTML 属性的话就全是字符串 -->
+    <child content="hello world"></child>
+  </div>
+
+
+  <script>
+    Vue.component('child', {
+      // 不是校验的话可以直接用字符串数组来标识
+      props: {
+        // content: [Number,String]
+        content: {
+          type: String,
+          required: true,
+          default: 'def val',
+          validator: function (value) {
+            return value.length > 5
+          }
+        }
+      },
+      template: "<div>{{content}}</div>"
+    })
+
+    var vm = new Vue({
+      el: "#root"
+    })
+  </script>
+</body>
+</html>

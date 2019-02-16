@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <title>Vue非父子组件传值</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <child content="hello"></child>
+    <child content="world"></child>
+  </div>
+
+
+  <script>
+    // 设置 bus
+    Vue.prototype.bus = new Vue();
+
+    Vue.component('child', {
+      // 子组件的 data 必须是函数
+      data: function () {
+        return {
+          selfContent: this.content
+        }
+      },
+      props: {
+        content: String
+      },
+      template: "<div @click='handleClick'>{{selfContent}}</div>",
+      methods: {
+        handleClick: function () {
+          // 向总线发送事件
+          this.bus.$emit("change", this.selfContent);
+        }
+      },
+      // 生命周期，挂载时触发
+      mounted: function () {
+        var this_ = this;
+        this.bus.$on("change", function (val) {
+          this_.selfContent = val;
+        })
+      }
+    })
+
+    var vm = new Vue({
+      el: "#root"
+    })
+  </script>
+</body>
+</html>
