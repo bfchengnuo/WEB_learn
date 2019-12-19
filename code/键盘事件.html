@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>键盘事件</title>
+		<meta charset="utf-8">
+		<style type="text/css">
+			div
+			{
+				width:80px;
+				height:80px;
+				background:green;
+				/*根据浏览器窗口定位*/
+				position:fixed;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function ()
+			{
+				document.onkeydown=function (ev)
+				{		
+					//防止兼容性问题
+					var oEvent=ev||event;
+					var oDiv=document.getElementById('div1');
+
+					if(oEvent.keyCode==37)
+					{
+						oDiv.style.left=oDiv.offsetLeft-10+'px';
+					}
+					if(oEvent.keyCode==38)
+					{
+						oDiv.style.top=oDiv.offsetTop-10+'px';
+					}
+					if(oEvent.keyCode==39)
+					{
+						oDiv.style.left=oDiv.offsetLeft+10+'px';
+					}
+					if(oEvent.keyCode==40)
+					{
+						oDiv.style.top=oDiv.offsetTop+10+'px';
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div1"></div>
+	</body>
+</html>
