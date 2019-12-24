@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html style="font-size: 40px;">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>刮奖</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Cache-Control" content="no-transform">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="layoutmode" content="standard">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="renderer" content="webkit">
+
+		<!--uc浏览器判断到页面上文字居多时，会自动放大字体优化移动用户体验。添加以下头部可以禁用掉该优化-->
+		<meta name="wap-font-scale" content="no">
+
+		<meta content="telephone=no" name="format-detection">
+		<meta http-equiv="Pragma" content="no-cache">
+
+		<script type="text/javascript">
+			//html root的字体计算应该放在最前面，这样计算就不会有误差了/
+			//2016.3.23 wjq update 之所以要加个判断返回一个20.5，是因为当用户在谷歌等浏览器直接输入手机端网站网址时，如果用户设置模块自定义样式的高度比较小，由于这时候的clientWidth为1920px，及返回的_htmlFontSize为40，这时候就会使模块太小，展示不完全，因此先取一个较为准确的值去展示。Mobi.resetHtmlFontSize()顺便也加了
+			var _htmlFontSize = (function() {
+				var clientWidth = document.documentElement ? document.documentElement.clientWidth : document.body.clientWidth;
+				if(clientWidth > 640) clientWidth = 640;
+				document.documentElement.style.fontSize = clientWidth * 1 / 16 + "px";
+				return clientWidth * 1 / 16;
+			})();
+		</script>
+		<link rel="stylesheet" type="text/css" href="css/base.min.css"/>
+
+	</head>
+
+	<body class="main_box" style="background-color: #1A1A1A">
+		<div class="row">
+				<div class="box">
+					<div class="mask_bg"></div>
+					<img class="redux" src="images/mask-img.jpg" />
+					<img hidden class="img_ok" src="images/ok1.png" />
+				</div>
+				<div class="box">
+					<div class="mask_bg"></div>
+					<img class="redux" src="images/mask-img.jpg" />
+					<img hidden class="img_ok" src="images/ok1.png" />
+				</div>
+				<div class="box">
+					<div class="mask_bg"></div>
+					<img class="redux" src="images/mask-img.jpg" />
+					<img hidden class="img_ok" src="images/ok1.png" />
+				</div>
+		</div>
+
+		<div class="row">
+				<div class="box">
+					<div class="mask_bg"></div>
+					<img class="redux" src="images/mask-img.jpg" />
+					<img hidden class="img_ok" src="images/ok1.png" />
+				</div>
+				<div class="box">
+					<div class="mask_bg"></div>
+					<img class="redux" src="images/mask-img.jpg" />
+					<img hidden class="img_ok" src="images/ok1.png" />
+				</div>
+				<div class="box">
+					<div class="mask_bg"></div>
+					<img class="redux" src="images/mask-img.jpg" />
+					<img hidden class="img_ok" src="images/ok1.png" />
+				</div>
+		</div>
+		
+		<div class="row">
+			<div class="box">
+					<div class="mask_bg"></div>
+					<img class="redux" src="images/mask-img.jpg" />
+					<img hidden class="img_ok" src="images/ok1.png" />
+				</div>
+				<div class="box">
+					<div class="mask_bg"></div>
+					<img class="redux" src="images/mask-img.jpg" />
+					<img hidden class="img_ok" src="images/ok1.png" />
+				</div>
+				<div class="box">
+					<div class="mask_bg"></div>
+					<img class="redux" src="images/mask-img.jpg" />
+					<img hidden class="img_ok" src="images/ok1.png" />
+				</div>
+		</div>
+		
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.eraser.js" ></script>
+		<script type="text/javascript">
+			$(window).load(function  () {
+				$('.redux').eraser( {
+					size: 30,   //设置橡皮擦大小
+			    completeRatio: .45, //设置擦除面积比例
+			    completeFunction: showResetButton   //大于擦除面积比例触发函数
+				});
+				function showResetButton(){
+					var can = $(this.canvas[0]);
+					can.next().removeAttr('hidden')
+					can.hide()
+				}
+			})
+
+			$(function () {
+				var boxs = $('.box');
+				var max = list.length;
+				boxs.each(function (index, box) {
+					$(box).find('.mask_bg').html(list[Math.floor(Math.random() * max)])
+				})
+			})
+
+			var list = [
+				'再来一次',
+				'作业一本',
+				'作业一本',
+				'再来一次',
+				'作业一本',
+				'再来一次',
+				'作业一本',
+				'作业一本',
+				'再来一次',
+				'作业一本',
+				'作业一本',
+			];
+		</script>
+	</body>
+</html>
